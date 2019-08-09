@@ -77,11 +77,22 @@ Using this approach, any keras defined model will easily be traininable and cons
 * See the [MLP](examples/custom_tensorflow_mlp.ecl) example.
 * See the [CNN](examples/custom_tensorflow_cnn.ecl) example.
 
+
 ## Training Data
 
 ## Training and Testing an NN model
 
 ## Using the Model (Inference)
+If you persist the model and use the model.predict() fucntion, you can use a trained model to make predictions on any incoming data on your HPCC cluster, as long as it has been prepared to the same format as the training data.
+The prediction method outputs the result/s in one-hot-encoded form in the following format:
+
+```
+oneHot := RECORD
+	SET of INTEGER class;
+END;
+```
+
+A one-hot-encoded format for a 10 class output would be a set of 10 integers, all of which are 0, except for one. The index of the 1 will be the class that row of data was predicted to be.
 
 ## TODO:
 This is the planned future work that will expand upon this bundle:
