@@ -97,7 +97,9 @@ i.e. a row that is predicted to belong to class 1 would be [1 0 0 0 0 0 0 0 0 0 
 
 ## TODO:
 This is the planned future work that will expand upon this bundle:
-* 
+* Continue adding supported Keras layers into [layers.ecl](layers.ecl)
+	* Full list starts [here](https://keras.io/layers/core/)
+* Make custom data handlers for importing different-formatted training data
 
 
 ## Author
