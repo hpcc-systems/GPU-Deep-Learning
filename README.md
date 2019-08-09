@@ -19,6 +19,27 @@ It is generated using [this](https://github.com/xwang2713/cloud-image-build).
 This produces an image with HPCC Systems Platform Community edition, version 7.2.14 pre-installed as well as all other requirements for this bundle, including CUDA version 10.0. 
 The image is designed to run on Amazon's [P2](https://aws.amazon.com/ec2/instance-types/p2/) or [P3](https://aws.amazon.com/ec2/instance-types/p3/) machines.
 
+The Bundle is built around various open source Python libraries and requires you to use Python 3. This also means any custom runtims written in Python, need to adhere to the Python 3 specifications. 
+Additionally, and perhaps most importantly, your cluster needs to be using the Python 3 version of pyembed.
+
+In /etc/HPCCSystems/environment.conf on your cluster
+
+```
+sudo nano /etc/HPCCSystems/environment.conf
+```
+
+Change the the line with the "additionalPlugins" variable to be:
+```
+additionalPlugins=python3
+```
+
+Then stop and start your cluster:
+```
+sudo systemct stop hpccsystems-platform.target
+sudo systemct start hpccsystems-platform.target
+
+```
+
 ### Included Training Data
 Included are some popular [Datasets](Datasets/data_files) used in experimenting with neural networks slightly modified for easy spraying on the HPCC Systems Platform. 
 The scripts used to generate the modified datasets is also included, which uses the original datasets as a staring point.
@@ -78,9 +99,9 @@ Using this approach, any keras defined model will easily be traininable and cons
 * See the [CNN](examples/custom_tensorflow_cnn.ecl) example.
 
 
-## Training Data
-
-## Training and Testing an NN model
+## Training Data Format
+Current included datasets and examples train on data in a specific HPCC format. 
+The records in the dataset are then converted into numpy arrays, a very popular and robust way of representing scintific data in Python.
 
 ## Using the Model (Inference)
 If you persist the model and use the model.predict() fucntion, you can use a trained model to make predictions on any incoming data on your HPCC cluster, as long as it has been prepared to the same format as the training data.
@@ -93,7 +114,10 @@ END;
 ```
 
 A one-hot-encoded format for a 10 class output would be a set of 10 integers, all of which are 0, except for one. The index of the 1 will be the class that row of data was predicted to be.
-i.e. a row that is predicted to belong to class 1 would be [1 0 0 0 0 0 0 0 0 0 0 ].
+i.e. a row that is predicted to belong to class 1 would be:
+```
+[1 0 0 0 0 0 0 0 0 0 0 ].
+```
 
 ## TODO:
 This is the planned future work that will expand upon this bundle:
