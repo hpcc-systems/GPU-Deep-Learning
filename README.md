@@ -111,7 +111,7 @@ END;
 Here you can see that the first element is the label and the next element is a single DATA784 that includes all of the pixel data in it.
 The data is then converted into a numpy array with a shape of (60000, 784). Meaning an array 60,000 long (one for each of the 60k images) where each element in that array is another array with 784 pixels (28 x 28 images, where the each row is layed end to end).
 
-This can be seen in the MNIST data loading function in [here](datasets/mnist.ecl). A more generalizable method to load other types of HPCC datasets into numpy arrays is needed, and is included in the TODO section.
+This can be seen in the MNIST data loading function in [here](Datasets/mnist.ecl). A more generalizable method to load other types of HPCC datasets into numpy arrays is needed, and is included in the TODO section.
 
 ## Using the Model (Inference)
 If you persist the model and use the model.predict() fucntion, you can use a trained model to make predictions on any incoming data on your HPCC cluster, as long as it has been prepared to the same format as the training data.
