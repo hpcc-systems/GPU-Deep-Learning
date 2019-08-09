@@ -1,0 +1,10 @@
+Datasets/data_files/cifar/*
+Datasets/data_files/mnist/mnist_test_noheader_big
+Datasets/data_files/mnist/mnist_test_noheader_bigger
+Datasets/data_files/mnist/mnist_train_noheader_big
+Datasets/data_files/mnist/mnist_train_noheader_bigger
+Datasets/data_files/fashion_mnist/fashion_mnist_test_noheader
+Datasets/data_files/fashion_mnist/fashion_mnist_train_noheader
+Datasets/data_files/fashion_mnist/fashion_mnist_train_noheader
+Datasets/data_files/fashion_mnist/fashion_mnist_test_noheader
+.eclcc/*
