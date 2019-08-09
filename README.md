@@ -22,8 +22,7 @@ The image is designed to run on Amazon's [P2](https://aws.amazon.com/ec2/instanc
 The Bundle is built around various open source Python libraries and requires you to use Python 3. This also means any custom runtims written in Python, need to adhere to the Python 3 specifications. 
 Additionally, and perhaps most importantly, your cluster needs to be using the Python 3 version of pyembed.
 
-In /etc/HPCCSystems/environment.conf on your cluster
-
+In /etc/HPCCSystems/environment.conf on your node/s on your cluster:
 ```
 sudo nano /etc/HPCCSystems/environment.conf
 ```
@@ -37,7 +36,6 @@ Then stop and start your cluster:
 ```
 sudo systemct stop hpccsystems-platform.target
 sudo systemct start hpccsystems-platform.target
-
 ```
 
 ### Included Training Data
@@ -102,6 +100,18 @@ Using this approach, any keras defined model will easily be traininable and cons
 ## Training Data Format
 Current included datasets and examples train on data in a specific HPCC format. 
 The records in the dataset are then converted into numpy arrays, a very popular and robust way of representing scintific data in Python.
+For example, the MNIST data set is of the following format:
+```
+mnist_data_type := RECORD
+	 INTEGER1 label;
+	 DATA784 image;
+END;
+```
+
+Here you can see that the first element is the label and the next element is a single DATA784 that includes all of the pixel data in it.
+The data is then converted into a numpy array with a shape of (60000, 784). Meaning an array 60,000 long (one for each of the 60k images) where each element in that array is another array with 784 pixels (28 x 28 images, where the each row is layed end to end).
+
+This can be seen in the MNIST data loading function in [here](datasets/mnist.ecl). A more generalizable method to load other types of HPCC datasets into numpy arrays is needed, and is included in the TODO section.
 
 ## Using the Model (Inference)
 If you persist the model and use the model.predict() fucntion, you can use a trained model to make predictions on any incoming data on your HPCC cluster, as long as it has been prepared to the same format as the training data.
@@ -116,7 +126,7 @@ END;
 A one-hot-encoded format for a 10 class output would be a set of 10 integers, all of which are 0, except for one. The index of the 1 will be the class that row of data was predicted to be.
 i.e. a row that is predicted to belong to class 1 would be:
 ```
-[1 0 0 0 0 0 0 0 0 0 0 ].
+[1 0 0 0 0 0 0 0 0 0 0 ]
 ```
 
 ## TODO:
@@ -124,6 +134,8 @@ This is the planned future work that will expand upon this bundle:
 * Continue adding supported Keras layers into [layers.ecl](layers.ecl)
 	* Full list starts [here](https://keras.io/layers/core/)
 * Make custom data handlers for importing different-formatted training data
+	* i.e. a more generalized data loader that takes HPCC Datasets and converts them into numpy arrays
+* Add support for other commonly used training data (input) formats
 
 
 ## Author
