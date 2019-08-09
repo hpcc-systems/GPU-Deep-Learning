@@ -78,7 +78,3 @@ trainedModel := model.train(nnOutputLayer, optimizer, trainingParameters, mnistT
 testPerformanceMetrics := model.test(trainedModel, mnistTest);
 OUTPUT(trainedModel.performanceMetrics);
 OUTPUT(testPerformanceMetrics);
-
-
-
-//EXPORT add_layers := 'todo';
