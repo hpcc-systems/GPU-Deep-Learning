@@ -88,11 +88,12 @@ The prediction method outputs the result/s in one-hot-encoded form in the follow
 
 ```
 oneHot := RECORD
-	SET of INTEGER class;
+  SET of INTEGER class;
 END;
 ```
 
 A one-hot-encoded format for a 10 class output would be a set of 10 integers, all of which are 0, except for one. The index of the 1 will be the class that row of data was predicted to be.
+i.e. a row that is predicted to belong to class 1 would be [1 0 0 0 0 0 0 0 0 0 0 ].
 
 ## TODO:
 This is the planned future work that will expand upon this bundle:
