@@ -50,9 +50,9 @@ for i, neurons in enumerate(shape):
 	if i == len(shape)-1:#output layer
 		model.add(k.layers.Dense(num_classes, activation=finalActivation))
 
-with open('/home/ubuntu/temp/report.txt','w') as fh: 
-	# Pass the file handle in as a lambda function to make it callable 
-	model.summary(print_fn=lambda x: fh.write(x + '\n'))
+#with open('/home/ubuntu/temp/report.txt','w') as fh: 
+#	# Pass the file handle in as a lambda function to make it callable 
+#	model.summary(print_fn=lambda x: fh.write(x + '\n'))
 
 return model.to_json()
 #return str(finalActivation)
